@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@firebase/vertexai-preview": "^0.0.2",
     "@fortawesome/fontawesome-free": "^6.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@testing-library/dom": "^8.19.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "alle-services": "file:",
     "axios": "^1.7.4",
+    "cheerio": "^1.0.0-rc.12",
     "firebase": "^10.13.0",
     "fuse.js": "^7.0.0",
     "leaflet": "^1.9.4",
@@ -18,10 +22,13 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-dotenv": "^0.1.3",
-    "react-leaflet": "^4.2.1",
+    "react-leaflet": "^3.2.5",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "^3.4.4",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "^4.0.3",
+    "undici": "^5.26.5",
+    "web-vitals": "^2.1.4",
+    "whatwg-encoding": "^2.0.0",
+    "whatwg-mimetype": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start --openssl-legacy-provider",
@@ -48,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

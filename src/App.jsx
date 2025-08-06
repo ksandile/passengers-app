@@ -9,7 +9,8 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 import Header from './components/Header';
-import useAuth from './hooks/useAuth'; // Import the useAuth hook
+import useAuth from './hooks/useAuth'; 
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   const user = useAuth(); // Get the current user

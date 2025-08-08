@@ -1,130 +1,141 @@
+/* Main container for each service */
 .service-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Keep button at bottom */
   align-items: center;
   padding: 16px;
-  border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease-in-out;
+  height: 100%; /* Keep equal heights in flex rows */
 }
+
 .service-container:hover {
   transform: translateY(-4px);
 }
 
-.services-row {
-  display: flex;
-  justify-content: space-between;
+.service-container img {
   width: 100%;
-  margin-bottom: 20px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-.services-row > div {
-  width: 47%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.service-container h2 {
+  margin: 8px 0 4px;
+  font-size: 1.2rem;
+}
+
+.service-container p {
+  margin: 0 0 12px;
   text-align: center;
-  background-color: #f9f9f9;
+  color: #555;
 }
 
-.services-row img {
-  width: 100%;
-  height: 300px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.search-bar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.search-bar {
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 700px;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.recent-addresses {
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.address-item {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
-
-.address-item:hover {
-  background-color: #f0f0f0;
-}
-
-.request-btn {
-  width: 100%;
+.service-container button {
   padding: 10px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
+  width: 100%;
 }
 
-.request-btn:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.service-container button:hover {
+  background-color: #0056b3;
 }
 
-.waiting-message {
-  margin-top: 10px;
+/* Services layout */
+.services-container {
+  width: 100%;
+}
+
+.services-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.services-row > div {
+  flex: 1;
+}
+
+/* Search bar overlay */
+/* Search bar overlay background */
+.search-bar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+/* Search bar container */
+.search-bar {
+  background: #ffffff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  width: 800px;
+  height: 700px;
+  max-width: 500px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Input styling */
+.search-bar input {
+  width: 100%;
+  padding: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   font-size: 16px;
-  color: #333;
-  text-align: center;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
+.search-bar input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Suggestions list */
 .suggestions-list {
   background: white;
   border: 1px solid #ccc;
   max-height: 200px;
   overflow-y: auto;
-  margin-top: 4px;
   list-style: none;
-  padding: 0;
-  z-index: 1000;
-  position: absolute;
-  width: 100%;
+  margin-top: 0;
+  padding-left: 0;
+  position: relative;
+   z-index: 2000;
 }
 
 .suggestion-item {
@@ -133,61 +144,61 @@
 }
 
 .suggestion-item:hover {
-  background-color: #eee;
+  background-color: #f0f0f0;
 }
 
 
-/* Media Query for Mobile Screens (768px or less) */
+/* Request button */
+.request-btn {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.request-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+}
+.request-btn:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+/* Waiting message */
+.waiting-message {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #333;
+  text-align: center;
+}
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .services-row {
     flex-direction: column;
   }
-
   .services-row > div {
     width: 100%;
-    margin-bottom: 20px;
   }
-
-  .services-row img {
-    height: 250px;
-  }
-
-  .search-bar {
-    padding: 30px;
-  }
-
-  .search-bar input {
-    padding: 8px;
-  }
-
-  .recent-addresses {
-    max-height: 150px;
-  }
-
-  .request-btn {
-    padding: 8px;
+  .service-container img {
+    height: 180px;
   }
 }
 
-/* Media Query for Smaller Mobile Screens (480px or less) */
 @media (max-width: 480px) {
-  .services-row img {
-    height: 200px;
-  }
-
-  .search-bar {
-    padding: 20px;
-  }
-
-  .search-bar input {
-    padding: 6px;
-  }
-
-  .request-btn {
-    padding: 6px;
-  }
-
-  .waiting-message {
-    font-size: 14px;
+  .service-container img {
+    height: 150px;
   }
 }

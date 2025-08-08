@@ -42,25 +42,53 @@ function Services() {
   const [requestSubmitted, setRequestSubmitted] = useState(false);
   const [selectedServiceType, setSelectedServiceType] = useState('');
   const autocompleteRef = useRef(null);
+  const [suggestions, setSuggestions] = useState([]);
 
+
+  // useEffect(() => {
+  //   if (showSearchBar) {
+  //     const script = document.createElement('script');
+  //     script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
+  //     script.async = true;
+  //     script.onload = () => {
+  //       const autocomplete = new window.google.maps.places.Autocomplete(autocompleteRef.current, {
+  //         types: ['geocode'],
+  //         componentRestrictions: { country: 'sa' }
+  //       });
+  //       autocomplete.addListener('place_changed', () => {
+  //         const place = autocomplete.getPlace();
+  //         setSearchInput(place.formatted_address);
+  //       });
+  //     };
+  //     document.head.appendChild(script);
+  //   }
+  // }, [showSearchBar]);
   useEffect(() => {
-    if (showSearchBar) {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
-      script.async = true;
-      script.onload = () => {
-        const autocomplete = new window.google.maps.places.Autocomplete(autocompleteRef.current, {
-          types: ['geocode'], // Restrict to address results
-          componentRestrictions: { country: 'us' } // Adjust to your country
-        });
-        autocomplete.addListener('place_changed', () => {
-          const place = autocomplete.getPlace();
-          setSearchInput(place.formatted_address);
-        });
-      };
-      document.head.appendChild(script);
-    }
-  }, [showSearchBar]);
+    const fetchSuggestions = async () => {
+      if (searchInput.length > 2) {
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+              searchInput
+            )}&format=json&addressdetails=1&limit=5`
+          );
+          const data = await response.json();
+          setSuggestions(data);
+        } catch (error) {
+          console.error("Error fetching suggestions:", error);
+        }
+      } else {
+        setSuggestions([]);
+      }
+    };
+
+    fetchSuggestions();
+  }, [searchInput]);
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchInput(suggestion.display_name);
+    setSuggestions([]); // hide dropdown
+  };
 
   const handleRequestClick = (serviceType) => {
     setSelectedServiceType(serviceType);
@@ -69,8 +97,8 @@ function Services() {
 
   const handleCloseSearchBar = () => {
     setShowSearchBar(false);
-    setSearchInput(''); // Reset search input when closing
-    setRequestSubmitted(false); // Reset the request state when closing
+    setSearchInput(''); 
+    setRequestSubmitted(false); 
   };
 
   const handleRequestSubmit = async () => {
@@ -99,25 +127,26 @@ function Services() {
         <div className="search-bar-overlay">
           <div className="search-bar">
             <button className="close-btn" onClick={handleCloseSearchBar}>×</button>
-            <input
+           <input
               ref={autocompleteRef}
+              placeholder="Enter your address or use current location"
               type="text"
-              placeholder="Enter your address..."
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            {!requestSubmitted ? (
-              <button
-                className="request-btn"
-                onClick={handleRequestSubmit}
-                disabled={!searchInput}
-              >
-                Request
-              </button>
-            ) : (
-              <div className="waiting-message">
-                Wait for the driver to accept your request.
-              </div>
+
+            {suggestions.length > 0 && (
+              <ul className="suggestions-list">
+                {suggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className="suggestion-item"
+                  >
+                    {suggestion.display_name}
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
         </div>

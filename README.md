@@ -59,6 +59,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/m
 
 ### Advanced Configuration
 
+
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
@@ -68,3 +69,26 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+#From the Images below, they will guide you on how to successfully sign up to our apllication
+
+## When clicking the link, you will be navigated to this page, then you will click Sign Up
+<img width="1876" height="825" alt="image" src="https://github.com/user-attachments/assets/373bbd85-561f-4c7c-92e8-ebe4376144d5" />
+
+## You will fill in the your details.
+<img width="1875" height="762" alt="image" src="https://github.com/user-attachments/assets/4cfd2d75-c9d4-4b3e-8486-4ef3c097ae9d" />
+
+## And then you will again will be navigated to this page, and you will then fill in the details and login
+<img width="1876" height="825" alt="image" src="https://github.com/user-attachments/assets/373bbd85-561f-4c7c-92e8-ebe4376144d5" />
+
+## After clicking LogIn, you will then be navigated the app it 
+<img width="989" height="894" alt="image" src="https://github.com/user-attachments/assets/5696a235-d185-4679-8e24-1274f1eb801e" />
+
+
+## When clicking request Car wash, you will be required to enter your email so that the app would negerate the amount you'll be changed based of your area
+<img width="953" height="809" alt="image" src="https://github.com/user-attachments/assets/a531f315-c127-4967-9b3f-4e0c1304e093" />
+
+
+
+
+
